@@ -24,7 +24,7 @@ html,
 body,
 #root {
   height: 100%;
-  height: 100dvh;
+  height: 100vh;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -81,6 +81,7 @@ main {
   overflow-y: auto;
   height: 100%;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
   /* Top padding for header space/safe area */
   padding-top: calc(2rem + env(safe-area-inset-top));
 }
@@ -209,6 +210,7 @@ footer {
   display: block;
   /* Optimization for fixed elements */
   transform: translateZ(0);
+  contain: paint;
 }
 
 .navigation-controls {
@@ -352,10 +354,11 @@ footer {
   flex-direction: column-reverse;
   align-items: center;
   gap: 12px;
-  /* Hardware acceleration for smoother scrolling */
+  /* Hardware acceleration and containment for smoother scrolling */
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
+  contain: paint;
 }
 
 .fab-btn {
