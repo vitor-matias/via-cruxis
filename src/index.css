@@ -311,7 +311,7 @@ footer {
 /* Accessibility Menu */
 .accessibility-menu {
   position: fixed;
-  bottom: 12%;
+  bottom: 13%;
   /* Slightly higher above footer */
   right: 20px;
   width: 60px;
