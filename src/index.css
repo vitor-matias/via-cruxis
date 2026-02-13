@@ -70,7 +70,7 @@ main {
 .station-content h1 {
   color: var(--primary-color);
   padding-bottom: 0.5rem;
-  font-size: 1.8rem;
+  font-size: 1.8em;
   letter-spacing: -0.02em;
   text-align: center;
 }
@@ -78,7 +78,7 @@ main {
 .station-content h2 {
   text-align: center;
   color: var(--primary-color);
-  font-size: 1.3rem;
+  font-size: 1.3em;
   margin-top: -0.5rem;
   margin-bottom: 1.5rem;
   border-bottom: 2px solid var(--accent-color);
@@ -88,7 +88,7 @@ main {
 .station-content h3 {
   margin-top: 1.5rem;
   color: var(--h3-color, #555);
-  font-size: 1.2rem;
+  font-size: 1.2em;
 }
 
 .station-content p {
@@ -264,7 +264,7 @@ footer {
   }
 
   .station-content h1 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 
   .station-content img {
