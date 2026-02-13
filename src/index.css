@@ -193,11 +193,14 @@ footer {
   padding: 1rem;
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
   padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  display: block;
+  /* Prevent scroll jitter on mobile */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .navigation-controls {
@@ -331,8 +334,8 @@ footer {
 /* Accessibility Menu */
 .accessibility-menu {
   position: fixed;
-  bottom: 13%;
-  /* Slightly higher above footer */
+  /* Use fixed pixel value to avoid jitter when address bar toggles */
+  bottom: 100px;
   right: 20px;
   width: 60px;
   /* Stable width prevents jitter */
@@ -341,6 +344,10 @@ footer {
   flex-direction: column-reverse;
   align-items: center;
   gap: 12px;
+  /* Hardware acceleration for smoother scrolling */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .fab-btn {
