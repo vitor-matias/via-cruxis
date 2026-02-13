@@ -20,8 +20,14 @@
   padding: 0;
 }
 
-html {
-  /* Standard rule if we wanted it everywhere, but we want Firefox only for now */
+html,
+body,
+#root {
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 body {
@@ -31,7 +37,6 @@ body {
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   touch-action: manipulation;
 
   /* Firefox specific bounce prevention */
@@ -67,13 +72,16 @@ h6 {
 /* Main Content */
 main {
   flex: 1;
-  padding: 2rem 1rem;
+  padding: 0 1rem 2rem 1rem;
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  /* Extra space for devices with notches if padding-top is not enough */
+  display: block;
+  /* Immersive Layout: Independent Scroll */
+  overflow-y: auto;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  /* Top padding for header space/safe area */
   padding-top: calc(2rem + env(safe-area-inset-top));
 }
 
@@ -193,14 +201,14 @@ footer {
   padding: 1rem;
   position: fixed;
   bottom: 0;
+  left: 0;
+  /* Ensure it's pinned to the viewport bottom */
   z-index: 1000;
   width: 100%;
   padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   display: block;
-  /* Prevent scroll jitter on mobile */
+  /* Optimization for fixed elements */
   transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 .navigation-controls {
