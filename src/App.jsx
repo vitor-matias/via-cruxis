@@ -1,7 +1,9 @@
 import React from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { AccessibilityProvider } from './context/AccessibilityContext';
 import StationContent from './components/StationContent';
 import Footer from './components/Footer';
+import AccessibilityMenu from './components/AccessibilityMenu';
 
 function AppContent() {
   const totalStations = 14;
@@ -46,12 +48,17 @@ function AppContent() {
         onPrev={handlePrev}
         onNext={handleNext}
       />
+      <AccessibilityMenu />
     </>
   );
 }
 
 function App() {
-  return <AppContent />;
+  return (
+    <AccessibilityProvider>
+      <AppContent />
+    </AccessibilityProvider>
+  );
 }
 
 export default App;
