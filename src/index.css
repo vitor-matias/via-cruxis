@@ -49,13 +49,13 @@ body {
 }
 
 /* Firefox specific bounce prevention - Top Level */
-@-moz-document url-prefix() {
+/* @-moz-document url-prefix() {
 
   html,
   body {
     overscroll-behavior: none;
   }
-}
+} */
 
 h1,
 h2,
