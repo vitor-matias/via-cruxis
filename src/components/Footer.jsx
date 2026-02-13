@@ -24,27 +24,29 @@ const Footer = ({ currentStation, totalStations, onPrev, onNext }) => {
     if (currentStation === 0) return null; // Don't show footer on welcome screen
 
     return (
-        <div className="navigation-controls">
-            <button
-                className="nav-btn"
-                onClick={onPrev}
-                disabled={currentStation <= 1}
-            >
-                Anterior
-            </button>
+        <footer>
+            <div className="navigation-controls">
+                <button
+                    className="nav-btn"
+                    onClick={onPrev}
+                    disabled={currentStation <= 1}
+                >
+                    Anterior
+                </button>
 
-            <span className="station-indicator">
-                {getRomanNumeral(currentStation)} Estação
-            </span>
+                <span className="station-indicator">
+                    {getRomanNumeral(currentStation)} Estação
+                </span>
 
-            <button
-                className="nav-btn"
-                onClick={onNext}
-                disabled={currentStation >= totalStations}
-            >
-                Próxima
-            </button>
-        </div>
+                <button
+                    className="nav-btn"
+                    onClick={onNext}
+                    disabled={currentStation >= totalStations}
+                >
+                    Próxima
+                </button>
+            </div>
+        </footer>
     );
 };
 
