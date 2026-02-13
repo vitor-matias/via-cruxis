@@ -64,16 +64,26 @@ main {
 /* Markdown Content Styling */
 .station-content h1 {
   color: var(--primary-color);
-  border-bottom: 2px solid var(--accent-color);
   padding-bottom: 0.5rem;
   font-size: 1.8rem;
   letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.station-content h2 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.8rem;
 }
 
 .station-content h3 {
   margin-top: 1.5rem;
   color: #555;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .station-content p {

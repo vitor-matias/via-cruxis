@@ -51,10 +51,10 @@ const StationContent = ({ onStart }) => {
     if (!id) {
         return (
             <div className="welcome-screen">
-                <h3>Bem-vindo à Via Sacra</h3>
-                <p>Jovens Santos que nos inspiram.</p>
+                <h3>Bem-vindo à Via Sacra Jovem 2026</h3>
+                <p>Jovens Santos que nos inspiram</p>
                 <button className="btn-start" onClick={() => navigate('/station/1')}>
-                    Iniciar Via Sacra
+                    Começar a Via Sacra
                 </button>
             </div>
         );
