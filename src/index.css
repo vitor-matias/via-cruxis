@@ -188,7 +188,6 @@ footer {
   background-color: var(--header-bg);
   color: var(--header-text);
   padding: 1rem;
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   position: fixed;
   bottom: 0;
   left: 0;
