@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  touch-action: manipulation;
 }
 
 h1,
@@ -165,12 +166,13 @@ footer {
   background-color: var(--header-bg);
   color: var(--header-text);
   padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   position: fixed;
-  bottom: -1px;
-  /* Bleed 1px to avoid subpixel gaps */
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 100;
+  width: 100%;
 }
 
 .navigation-controls {
