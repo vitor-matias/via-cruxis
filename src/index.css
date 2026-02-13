@@ -23,7 +23,7 @@
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -35,6 +35,7 @@ body {
   line-height: 1.6;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   touch-action: manipulation;
 
   /* Support for viewport-fit=cover */
@@ -54,16 +55,11 @@ h6 {
 /* Main Content */
 main {
   flex: 1;
-  padding: 0 1rem 2rem 1rem;
+  padding: 2rem 1rem;
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
-  display: block;
-  /* Immersive Layout: Independent Scroll */
-  overflow-y: auto;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
-  /* Top padding for header space/safe area */
+  /* Support for viewport-fit=cover and safe areas */
   padding-top: calc(2rem + env(safe-area-inset-top));
 }
 
