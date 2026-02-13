@@ -21,13 +21,7 @@
 }
 
 html {
-
-  /* Firefox specific bounce prevention */
-  @-moz-document url-prefix() {
-    & {
-      overscroll-behavior: none;
-    }
-  }
+  /* Standard rule if we wanted it everywhere, but we want Firefox only for now */
 }
 
 body {
@@ -49,6 +43,15 @@ body {
 
   /* Support for viewport-fit=cover */
   padding-top: env(safe-area-inset-top);
+}
+
+/* Firefox specific bounce prevention - Top Level */
+@-moz-document url-prefix() {
+
+  html,
+  body {
+    overscroll-behavior: none;
+  }
 }
 
 h1,
