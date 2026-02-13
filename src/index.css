@@ -196,8 +196,10 @@ footer {
   transition: background-color 0.2s;
 }
 
-.nav-btn:hover {
-  background-color: #4a215c;
+@media (hover: hover) {
+  .nav-btn:hover {
+    background-color: #4a215c;
+  }
 }
 
 .nav-btn:active {
@@ -240,9 +242,11 @@ footer {
   border: none;
 }
 
-.btn-start:hover {
-  transform: scale(1.05);
-  background-color: #4a215c;
+@media (hover: hover) {
+  .btn-start:hover {
+    transform: scale(1.05);
+    background-color: #4a215c;
+  }
 }
 
 .btn-start:active {
@@ -331,9 +335,11 @@ footer {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.fab-btn:hover {
-  transform: scale(1.05);
-  background-color: #4a215c;
+@media (hover: hover) {
+  .fab-btn:hover {
+    transform: scale(1.05);
+    background-color: #4a215c;
+  }
 }
 
 .menu-options {
@@ -360,8 +366,10 @@ footer {
   transition: all 0.2s;
 }
 
-.menu-btn:hover {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .menu-btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+  }
 }
