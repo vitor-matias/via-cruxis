@@ -20,7 +20,7 @@ const getRomanNumeral = (num) => {
     return romanNumerals[num];
 }
 
-const Footer = ({ currentStation, totalStations, onPrev, onNext }) => {
+const Footer = React.memo(({ currentStation, totalStations, onPrev, onNext }) => {
     if (currentStation === 0) return null; // Don't show footer on welcome screen
 
     return (
@@ -48,6 +48,6 @@ const Footer = ({ currentStation, totalStations, onPrev, onNext }) => {
             </div>
         </footer>
     );
-};
+});
 
 export default Footer;
