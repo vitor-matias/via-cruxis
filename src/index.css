@@ -20,6 +20,16 @@
   padding: 0;
 }
 
+html {
+
+  /* Firefox specific bounce prevention */
+  @-moz-document url-prefix() {
+    & {
+      overscroll-behavior: none;
+    }
+  }
+}
+
 body {
   font-family: 'Lato', sans-serif;
   background-color: var(--secondary-color);
@@ -29,7 +39,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
   touch-action: manipulation;
-  overscroll-behavior: none;
+
+  /* Firefox specific bounce prevention */
+  @-moz-document url-prefix() {
+    & {
+      overscroll-behavior: none;
+    }
+  }
+
   /* Support for viewport-fit=cover */
   padding-top: env(safe-area-inset-top);
 }
