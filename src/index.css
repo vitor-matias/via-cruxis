@@ -37,25 +37,9 @@ body {
   flex-direction: column;
   touch-action: manipulation;
 
-  /* Firefox specific bounce prevention */
-  @-moz-document url-prefix() {
-    & {
-      overscroll-behavior: none;
-    }
-  }
-
   /* Support for viewport-fit=cover */
   padding-top: env(safe-area-inset-top);
 }
-
-/* Firefox specific bounce prevention - Top Level */
-/* @-moz-document url-prefix() {
-
-  html,
-  body {
-    overscroll-behavior: none;
-  }
-} */
 
 h1,
 h2,
