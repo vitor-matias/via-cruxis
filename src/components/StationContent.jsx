@@ -24,7 +24,7 @@ const StationContent = ({ onStart }) => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`/stations/${stationNum}.md`);
+                const response = await fetch(`stations/${stationNum}.md`);
                 if (!response.ok) {
                     throw new Error(`Failed to load station ${stationNum}`);
                 }
