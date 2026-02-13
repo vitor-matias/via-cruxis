@@ -183,8 +183,8 @@ main {
   cursor: pointer;
 }
 
-/* Footer & Navigation Controls */
-.bottom-bar {
+/* Navigation Controls */
+.navigation-controls {
   background-color: var(--header-bg);
   color: var(--header-text);
   padding: 1rem;
@@ -194,13 +194,9 @@ main {
   right: 0;
   z-index: 100;
   width: 100%;
-}
-
-.navigation-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 800px;
   margin: 0 auto;
 }
 
