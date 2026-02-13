@@ -20,6 +20,13 @@ export const AccessibilityProvider = ({ children }) => {
                 activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
             document.documentElement.setAttribute('data-theme', activeTheme);
+
+            // Update theme-color meta tag
+            let metaColor = activeTheme === 'dark' ? '#09070a' : '#2a1b3d';
+            let metaTag = document.querySelector('meta[name="theme-color"]');
+            if (metaTag) {
+                metaTag.setAttribute('content', metaColor);
+            }
         };
 
         applyTheme(theme);

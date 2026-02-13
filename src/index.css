@@ -30,6 +30,8 @@ body {
   min-height: 100vh;
   touch-action: manipulation;
   overscroll-behavior: none;
+  /* Support for viewport-fit=cover */
+  padding-top: env(safe-area-inset-top);
 }
 
 h1,
@@ -51,6 +53,8 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+  /* Extra space for devices with notches if padding-top is not enough */
+  padding-top: calc(2rem + env(safe-area-inset-top));
 }
 
 #content-area {
