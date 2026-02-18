@@ -1,16 +1,84 @@
-# React + Vite
+# Via Sacra - Santidade Juvenil
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Via Sacra (Way of the Cross) application featuring young saints who inspire us. This interactive web application presents 14 stations, each dedicated to a young saint's story.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🙏 14 Stations of young saints
+- 🌓 Dark/Light/System theme support
+- 📖 Accessible reading with adjustable font sizes
+- 🖼️ Image zoom functionality
+- 📱 Mobile-responsive design
+- ♿ Built with accessibility in mind
 
-## React Compiler
+## Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** - UI framework
+- **Vite** - Build tool and dev server
+- **React Router** - Navigation
+- **Marked** - Markdown parsing
+- **DOMPurify** - XSS protection
+- **Lucide React** - Icons
+- **ESLint** - Code quality
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Lint code
+npm run lint
+
+# Preview production build
+npm run preview
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+## Security
+
+This application implements several security best practices:
+- HTML sanitization with DOMPurify to prevent XSS attacks
+- PropTypes validation for type safety
+- Secure content rendering
+- URL validation before processing
+
+## Accessibility
+
+- Theme switching (Light/Dark/System)
+- Font size adjustment (80%-150%)
+- Semantic HTML structure
+- ARIA labels for interactive elements
+- Keyboard navigation support
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── StationContent.jsx
+│   ├── Navigation.jsx
+│   ├── Footer.jsx
+│   └── AccessibilityMenu.jsx
+├── context/            # React context providers
+│   └── AccessibilityContext.jsx
+├── constants.js        # Application constants
+├── App.jsx            # Main app component
+└── main.jsx           # Entry point
+
+public/
+├── stations/          # Markdown content for each station
+└── images/           # Saint images
+```
+
+## License
+
+This project is private and intended for educational/religious purposes.
