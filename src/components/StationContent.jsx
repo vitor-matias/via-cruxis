@@ -95,8 +95,4 @@ const StationContent = () => {
     );
 };
 
-StationContent.propTypes = {
-    // No props currently used
-};
-
 export default StationContent;

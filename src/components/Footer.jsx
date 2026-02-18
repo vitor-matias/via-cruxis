@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 const getRomanNumeral = (num) => {
     const romanNumerals = {
@@ -57,4 +58,4 @@ Footer.propTypes = {
     onNext: PropTypes.func.isRequired,
 };
 
-export default Footer;
+export default memo(Footer);
