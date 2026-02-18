@@ -1,84 +1,84 @@
 # Via Sacra - Santidade Juvenil
 
-A Via Sacra (Way of the Cross) application featuring young saints who inspire us. This interactive web application presents 14 stations, each dedicated to a young saint's story.
+Uma aplicação de Via Sacra apresentando jovens santos que nos inspiram. Esta aplicação web interativa apresenta 14 estações, cada uma dedicada à história de um jovem santo.
 
-## Features
+## Funcionalidades
 
-- 🙏 14 Stations of young saints
-- 🌓 Dark/Light/System theme support
-- 📖 Accessible reading with adjustable font sizes
-- 🖼️ Image zoom functionality
-- 📱 Mobile-responsive design
-- ♿ Built with accessibility in mind
+- 🙏 14 Estações de jovens santos
+- 🌓 Suporte a tema Escuro/Claro/Sistema
+- 📖 Leitura acessível com tamanhos de fonte ajustáveis
+- 🖼️ Funcionalidade de zoom de imagens
+- 📱 Design responsivo para dispositivos móveis
+- ♿ Desenvolvido com acessibilidade em mente
 
-## Technologies
+## Tecnologias
 
-- **React 18** - UI framework
-- **Vite** - Build tool and dev server
-- **React Router** - Navigation
-- **Marked** - Markdown parsing
-- **DOMPurify** - XSS protection
-- **Lucide React** - Icons
-- **ESLint** - Code quality
+- **React 18** - Framework de interface
+- **Vite** - Ferramenta de build e servidor de desenvolvimento
+- **React Router** - Navegação
+- **Marked** - Processamento de Markdown
+- **DOMPurify** - Proteção contra XSS
+- **Lucide React** - Ícones
+- **ESLint** - Qualidade de código
 
-## Development
+## Desenvolvimento
 
 ```bash
-# Install dependencies
+# Instalar dependências
 npm install
 
-# Run development server
+# Executar servidor de desenvolvimento
 npm run dev
 
-# Build for production
+# Build para produção
 npm run build
 
-# Lint code
+# Verificar código
 npm run lint
 
-# Preview production build
+# Pré-visualizar build de produção
 npm run preview
 
-# Deploy to GitHub Pages
+# Deploy para GitHub Pages
 npm run deploy
 ```
 
-## Security
+## Segurança
 
-This application implements several security best practices:
-- HTML sanitization with DOMPurify to prevent XSS attacks
-- PropTypes validation for type safety
-- Secure content rendering
-- URL validation before processing
+Esta aplicação implementa várias boas práticas de segurança:
+- Sanitização HTML com DOMPurify para prevenir ataques XSS
+- Validação PropTypes para segurança de tipos
+- Renderização segura de conteúdo
+- Validação de URLs antes do processamento
 
-## Accessibility
+## Acessibilidade
 
-- Theme switching (Light/Dark/System)
-- Font size adjustment (80%-150%)
-- Semantic HTML structure
-- ARIA labels for interactive elements
-- Keyboard navigation support
+- Alternância de tema (Claro/Escuro/Sistema)
+- Ajuste de tamanho de fonte (80%-150%)
+- Estrutura HTML semântica
+- Etiquetas ARIA para elementos interativos
+- Suporte a navegação por teclado
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 src/
-├── components/          # React components
+├── components/          # Componentes React
 │   ├── StationContent.jsx
 │   ├── Navigation.jsx
 │   ├── Footer.jsx
 │   └── AccessibilityMenu.jsx
-├── context/            # React context providers
+├── context/            # Provedores de contexto React
 │   └── AccessibilityContext.jsx
-├── constants.js        # Application constants
-├── App.jsx            # Main app component
-└── main.jsx           # Entry point
+├── constants.js        # Constantes da aplicação
+├── App.jsx            # Componente principal da aplicação
+└── main.jsx           # Ponto de entrada
 
 public/
-├── stations/          # Markdown content for each station
-└── images/           # Saint images
+├── stations/          # Conteúdo Markdown para cada estação
+└── images/           # Imagens dos santos
 ```
 
-## License
+## Licença
 
-This project is private and intended for educational/religious purposes.
+Este projeto é privado e destinado a fins educacionais/religiosos.
