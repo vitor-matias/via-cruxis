@@ -1,6 +1,6 @@
 # Via Sacra - Santidade Juvenil
 
-Uma aplicação de Via Sacra apresentando jovens santos que nos inspiram. Esta aplicação web interativa apresenta 14 estações, cada uma dedicada à história de um jovem santo.
+Uma Via Sacra com jovens santos que nos inspiram. Esta aplicação web apresenta 14 estações, cada uma dedicada à história de um jovem santo.
 
 ## Funcionalidades
 
@@ -9,7 +9,6 @@ Uma aplicação de Via Sacra apresentando jovens santos que nos inspiram. Esta a
 - 📖 Leitura acessível com tamanhos de fonte ajustáveis
 - 🖼️ Funcionalidade de zoom de imagens
 - 📱 Design responsivo para dispositivos móveis
-- ♿ Desenvolvido com acessibilidade em mente
 
 ## Tecnologias
 
@@ -17,7 +16,6 @@ Uma aplicação de Via Sacra apresentando jovens santos que nos inspiram. Esta a
 - **Vite** - Ferramenta de build e servidor de desenvolvimento
 - **React Router** - Navegação
 - **Marked** - Processamento de Markdown
-- **DOMPurify** - Proteção contra XSS
 - **Lucide React** - Ícones
 - **ESLint** - Qualidade de código
 
@@ -43,22 +41,6 @@ npm run preview
 npm run deploy
 ```
 
-## Segurança
-
-Esta aplicação implementa várias boas práticas de segurança:
-- Sanitização HTML com DOMPurify para prevenir ataques XSS
-- Validação PropTypes para segurança de tipos
-- Renderização segura de conteúdo
-- Validação de URLs antes do processamento
-
-## Acessibilidade
-
-- Alternância de tema (Claro/Escuro/Sistema)
-- Ajuste de tamanho de fonte (80%-150%)
-- Estrutura HTML semântica
-- Etiquetas ARIA para elementos interativos
-- Suporte a navegação por teclado
-
 ## Estrutura do Projeto
 
 ```
@@ -68,17 +50,17 @@ src/
 │   ├── Navigation.jsx
 │   ├── Footer.jsx
 │   └── AccessibilityMenu.jsx
-├── context/            # Provedores de contexto React
+├── context/            # Contexto React
 │   └── AccessibilityContext.jsx
 ├── constants.js        # Constantes da aplicação
 ├── App.jsx            # Componente principal da aplicação
 └── main.jsx           # Ponto de entrada
 
 public/
-├── stations/          # Conteúdo Markdown para cada estação
+├── stations/          # Conteúdo em Markdown para cada estação
 └── images/           # Imagens dos santos
 ```
 
 ## Licença
 
-Este projeto é privado e destinado a fins educacionais/religiosos.
+Este projeto é destinado a fins educacionais/religiosos.
