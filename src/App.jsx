@@ -17,7 +17,7 @@ function AppContent() {
   // Validate station and redirect if invalid
   useEffect(() => {
     if (location.pathname.startsWith('/station/')) {
-      if (isNaN(currentStation) || currentStation < 1 || currentStation > TOTAL_STATIONS || location.pathname !== `/station/${currentStation}`) {
+      if (isNaN(currentStation) || currentStation < 1 || currentStation > TOTAL_STATIONS) {
         navigate('/', { replace: true });
       }
     }
