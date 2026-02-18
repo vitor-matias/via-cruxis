@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AccessibilityProvider } from './context/AccessibilityContext';
 import StationContent from './components/StationContent';
@@ -12,6 +13,15 @@ function AppContent() {
   // Extract station number from path
   const match = location.pathname.match(/\/station\/(\d+)/);
   const currentStation = match ? parseInt(match[1], 10) : 0;
+
+  // Validate station and redirect if invalid
+  useEffect(() => {
+    if (location.pathname.startsWith('/station/')) {
+      if (isNaN(currentStation) || currentStation < 1 || currentStation > TOTAL_STATIONS || location.pathname !== `/station/${currentStation}`) {
+        navigate('/', { replace: true });
+      }
+    }
+  }, [location.pathname, currentStation, navigate]);
 
   const handleNext = () => {
     if (currentStation < TOTAL_STATIONS) {
