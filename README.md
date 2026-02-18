@@ -1,16 +1,66 @@
-# React + Vite
+# Via Sacra - Santidade Juvenil
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma Via Sacra com jovens santos que nos inspiram. Esta aplicação web apresenta 14 estações, cada uma dedicada à história de um jovem santo.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🙏 14 Estações de jovens santos
+- 🌓 Suporte a tema Escuro/Claro/Sistema
+- 📖 Leitura acessível com tamanhos de fonte ajustáveis
+- 🖼️ Funcionalidade de zoom de imagens
+- 📱 Design responsivo para dispositivos móveis
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** - Framework de interface
+- **Vite** - Ferramenta de build e servidor de desenvolvimento
+- **React Router** - Navegação
+- **Marked** - Processamento de Markdown
+- **Lucide React** - Ícones
+- **ESLint** - Qualidade de código
 
-## Expanding the ESLint configuration
+## Desenvolvimento
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Instalar dependências
+npm install
+
+# Executar servidor de desenvolvimento
+npm run dev
+
+# Build para produção
+npm run build
+
+# Verificar código
+npm run lint
+
+# Pré-visualizar build de produção
+npm run preview
+
+# Deploy para GitHub Pages
+npm run deploy
+```
+
+## Estrutura do Projeto
+
+```
+src/
+├── components/          # Componentes React
+│   ├── StationContent.jsx
+│   ├── Navigation.jsx
+│   ├── Footer.jsx
+│   └── AccessibilityMenu.jsx
+├── context/            # Contexto React
+│   └── AccessibilityContext.jsx
+├── constants.js        # Constantes da aplicação
+├── App.jsx            # Componente principal da aplicação
+└── main.jsx           # Ponto de entrada
+
+public/
+├── stations/          # Conteúdo em Markdown para cada estação
+└── images/           # Imagens dos santos
+```
+
+## Licença
+
+Este projeto é destinado a fins educacionais/religiosos.

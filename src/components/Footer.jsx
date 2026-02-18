@@ -1,4 +1,5 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 const getRomanNumeral = (num) => {
     const romanNumerals = {
@@ -20,7 +21,7 @@ const getRomanNumeral = (num) => {
     return romanNumerals[num];
 }
 
-const Footer = React.memo(({ currentStation, totalStations, onPrev, onNext }) => {
+const Footer = ({ currentStation, totalStations, onPrev, onNext }) => {
     if (currentStation === 0) return null; // Don't show footer on welcome screen
 
     return (
@@ -48,6 +49,13 @@ const Footer = React.memo(({ currentStation, totalStations, onPrev, onNext }) =>
             </div>
         </footer>
     );
-});
+};
 
-export default Footer;
+Footer.propTypes = {
+    currentStation: PropTypes.number.isRequired,
+    totalStations: PropTypes.number.isRequired,
+    onPrev: PropTypes.func.isRequired,
+    onNext: PropTypes.func.isRequired,
+};
+
+export default memo(Footer);

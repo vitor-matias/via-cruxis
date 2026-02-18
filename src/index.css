@@ -393,3 +393,9 @@ footer {
     transform: translateY(-2px);
   }
 }
+
+@media (min-width: 1100px) {
+  .accessibility-menu {
+    right: calc(50% - 520px);
+  }
+}
