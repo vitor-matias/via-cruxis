@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 
 const AccessibilityContext = createContext();
 
@@ -17,7 +18,8 @@ export const AccessibilityProvider = ({ children }) => {
         const applyTheme = (currentTheme) => {
             let activeTheme = currentTheme;
             if (currentTheme === 'system') {
-                activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                activeTheme = mediaQuery.matches ? 'dark' : 'light';
             }
             document.documentElement.setAttribute('data-theme', activeTheme);
 
@@ -32,12 +34,22 @@ export const AccessibilityProvider = ({ children }) => {
         applyTheme(theme);
         localStorage.setItem('theme', theme);
 
+        // Set up listener for system theme changes
+        let mediaQuery = null;
+        let handleChange = null;
+        
         if (theme === 'system') {
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            const handleChange = () => applyTheme('system');
+            mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            handleChange = () => applyTheme('system');
             mediaQuery.addEventListener('change', handleChange);
-            return () => mediaQuery.removeEventListener('change', handleChange);
         }
+
+        // Clean up listener on unmount or theme change
+        return () => {
+            if (mediaQuery && handleChange) {
+                mediaQuery.removeEventListener('change', handleChange);
+            }
+        };
     }, [theme]);
 
     useEffect(() => {
@@ -74,4 +86,8 @@ export const AccessibilityProvider = ({ children }) => {
             {children}
         </AccessibilityContext.Provider>
     );
+};
+
+AccessibilityProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };

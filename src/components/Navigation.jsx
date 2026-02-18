@@ -1,9 +1,10 @@
-import React from 'react';
 import { X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { TOTAL_STATIONS } from '../constants';
 
 const Navigation = ({ isOpen, onClose }) => {
-    const stations = Array.from({ length: 14 }, (_, i) => i + 1);
+    const stations = Array.from({ length: TOTAL_STATIONS }, (_, i) => i + 1);
     const location = useLocation();
     const currentPath = location.pathname;
 
@@ -23,9 +24,7 @@ const Navigation = ({ isOpen, onClose }) => {
                         onClick={onClose}
                         className={currentPath === '/' ? 'active' : ''}
                     >
-                        <button style={{ all: 'unset', width: '100%', cursor: 'pointer' }}>
-                            Início
-                        </button>
+                        Início
                     </Link>
                 </li>
                 {stations.map((num) => (
@@ -35,15 +34,18 @@ const Navigation = ({ isOpen, onClose }) => {
                             onClick={onClose}
                             className={currentPath === `/station/${num}` ? 'active' : ''}
                         >
-                            <button style={{ all: 'unset', width: '100%', cursor: 'pointer' }}>
-                                Estação {num}
-                            </button>
+                            Estação {num}
                         </Link>
                     </li>
                 ))}
             </ul>
         </nav>
     );
+};
+
+Navigation.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
 };
 
 export default Navigation;

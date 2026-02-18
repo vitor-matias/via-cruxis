@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAccessibility } from '../context/AccessibilityContext';
 import { Sun, Moon, AArrowUp, AArrowDown, Eye, SunMoon } from 'lucide-react';
 

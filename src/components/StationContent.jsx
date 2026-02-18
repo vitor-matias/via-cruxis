@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { marked } from 'marked';
 import { useParams, useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
+import PropTypes from 'prop-types';
 
-const StationContent = ({ onStart }) => {
+const StationContent = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const stationNum = id ? parseInt(id, 10) : 0;
 
     const [content, setContent] = useState('');
     const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ const StationContent = ({ onStart }) => {
             return;
         }
 
+        const stationNum = parseInt(id, 10);
         const fetchStation = async () => {
             setLoading(true);
             setError(null);
@@ -29,10 +31,11 @@ const StationContent = ({ onStart }) => {
                     throw new Error(`Failed to load station ${stationNum}`);
                 }
                 const text = await response.text();
-                setContent(marked.parse(text));
+                const parsedMarkdown = marked.parse(text);
+                const sanitizedContent = DOMPurify.sanitize(parsedMarkdown);
+                setContent(sanitizedContent);
                 setZoomedImage(null); // Reset zoom on station change
             } catch (err) {
-                console.error(err);
                 setError('Erro ao carregar a estação.');
             } finally {
                 setLoading(false);
@@ -40,11 +43,15 @@ const StationContent = ({ onStart }) => {
         };
 
         fetchStation();
-    }, [stationNum, id]);
+    }, [id]);
 
     const handleContentClick = (e) => {
         if (e.target.tagName === 'IMG') {
-            setZoomedImage(e.target.src);
+            const imgSrc = e.target.src;
+            // Validate that the src is a valid relative or absolute URL
+            if (imgSrc && (imgSrc.startsWith('/') || imgSrc.startsWith('http'))) {
+                setZoomedImage(imgSrc);
+            }
         }
     };
 
@@ -86,6 +93,10 @@ const StationContent = ({ onStart }) => {
             )}
         </>
     );
+};
+
+StationContent.propTypes = {
+    // No props currently used
 };
 
 export default StationContent;
