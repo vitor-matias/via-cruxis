@@ -7,8 +7,21 @@ const AccessibilityMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const getThemeIcon = () => {
-        if (theme === 'system') return <SunMoon size={20} />;
-        return theme === 'light' ? <Moon size={20} /> : <Sun size={20} />;
+        switch (theme) {
+            case 'light': return <Sun size={20} />;
+            case 'dark': return <Moon size={20} />;
+            case 'system': return <SunMoon size={20} />;
+            default: return <SunMoon size={20} />;
+        }
+    };
+
+    const getNextThemeLabel = () => {
+        switch (theme) {
+            case 'light': return 'Mudar para o tema escuro';
+            case 'dark': return 'Mudar para o tema de sistema';
+            case 'system': return 'Mudar para o tema claro';
+            default: return 'Mudar de tema';
+        }
     };
 
     return (
@@ -23,7 +36,12 @@ const AccessibilityMenu = () => {
 
             {isOpen && (
                 <div className="menu-options">
-                    <button onClick={toggleTheme} className="menu-btn" aria-label="Toggle theme">
+                    <button
+                        onClick={toggleTheme}
+                        className="menu-btn"
+                        aria-label={getNextThemeLabel()}
+                        title={getNextThemeLabel()}
+                    >
                         {getThemeIcon()}
                     </button>
                     <button onClick={increaseFontSize} className="menu-btn" aria-label="Increase font size">
