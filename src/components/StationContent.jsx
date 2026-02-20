@@ -64,7 +64,18 @@ const StationContent = () => {
     }
 
     if (!id) {
-        return null; // Or handle as needed, but routing should prevent this
+        return (
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+                <p>Estação não encontrada.</p>
+                <button
+                    type="button"
+                    onClick={() => navigate('/')}
+                    style={{ marginTop: '1rem' }}
+                >
+                    Voltar ao início
+                </button>
+            </div>
+        );
     }
 
     return (
