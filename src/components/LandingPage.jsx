@@ -3,7 +3,7 @@ import { useAccessibility } from '../context/AccessibilityContext';
 
 const LandingPage = () => {
     const navigate = useNavigate();
-    const { theme, activeTheme } = useAccessibility();
+    const { activeTheme } = useAccessibility();
 
     const baseUrl = import.meta.env.BASE_URL;
     const logoSrc = activeTheme === 'dark'
