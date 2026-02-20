@@ -11,9 +11,10 @@ const LandingPage = () => {
         ? document.documentElement.getAttribute('data-theme')
         : theme;
 
+    const baseUrl = import.meta.env.BASE_URL;
     const logoSrc = activeTheme === 'dark'
-        ? '/images/logo_Juventude_Diocese_b_sfundo.png'
-        : '/images/logo_Juventude_Diocese.png';
+        ? `${baseUrl}images/logo_Juventude_Diocese_b_sfundo.png`
+        : `${baseUrl}images/logo_Juventude_Diocese.png`;
 
     return (
         <div className="welcome-screen">
