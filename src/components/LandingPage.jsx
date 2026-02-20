@@ -3,13 +3,7 @@ import { useAccessibility } from '../context/AccessibilityContext';
 
 const LandingPage = () => {
     const navigate = useNavigate();
-    const { theme } = useAccessibility();
-
-    // Determine which logo to show based on the theme
-    // If 'system', we need to check the actual active theme from the document attribute
-    const activeTheme = theme === 'system'
-        ? document.documentElement.getAttribute('data-theme')
-        : theme;
+    const { theme, activeTheme } = useAccessibility();
 
     const baseUrl = import.meta.env.BASE_URL;
     const logoSrc = activeTheme === 'dark'
