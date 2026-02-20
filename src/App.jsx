@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { AccessibilityProvider } from './context/AccessibilityContext';
+import { AccessibilityProvider } from './context/AccessibilityProvider';
 import StationContent from './components/StationContent';
 import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';

@@ -36,7 +36,7 @@ const StationContent = () => {
                 setContent(sanitizedContent);
                 setZoomedImage(null); // Reset zoom on station change
             } catch (err) {
-                setError('Erro ao carregar a estação.');
+                setError('Erro ao carregar a estação.', err);
             } finally {
                 setLoading(false);
             }
