@@ -35,7 +35,7 @@ const StationContent = () => {
                 const sanitizedContent = DOMPurify.sanitize(parsedMarkdown);
                 setContent(sanitizedContent);
                 setZoomedImage(null); // Reset zoom on station change
-            } catch (err) {
+                console.error('Error fetching station:', err);
                 setError('Erro ao carregar a estação.');
             } finally {
                 setLoading(false);
