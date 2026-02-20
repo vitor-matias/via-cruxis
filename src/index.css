@@ -259,13 +259,6 @@ footer {
   opacity: 0.9;
 }
 
-.initiative-text {
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--italic-color);
-  margin-top: 0;
-}
-
 .btn-start {
   display: inline-block;
   margin-top: 2rem;
