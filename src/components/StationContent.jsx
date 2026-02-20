@@ -55,24 +55,16 @@ const StationContent = () => {
         }
     };
 
-    if (!id) {
-        return (
-            <div className="welcome-screen">
-                <h3>Bem-vindo à Via Sacra Jovem 2026</h3>
-                <p>Jovens Santos que nos inspiram</p>
-                <button className="btn-start" onClick={() => navigate('/station/1')}>
-                    Começar a Via Sacra
-                </button>
-            </div>
-        );
-    }
-
     if (loading) {
         return <div style={{ textAlign: 'center', padding: '2rem' }}>A carregar...</div>;
     }
 
     if (error) {
         return <div style={{ textAlign: 'center', padding: '2rem', color: 'red' }}>{error}</div>;
+    }
+
+    if (!id) {
+        return null; // Or handle as needed, but routing should prevent this
     }
 
     return (
