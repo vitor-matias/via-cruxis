@@ -242,6 +242,21 @@ footer {
 .welcome-screen h3 {
   font-size: 2rem;
   color: var(--primary-color);
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.landing-footer {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-logo {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
 }
 
 .btn-start {

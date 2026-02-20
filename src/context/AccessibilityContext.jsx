@@ -10,21 +10,30 @@ export const AccessibilityProvider = ({ children }) => {
         return localStorage.getItem('theme') || 'system';
     });
 
+    const [activeTheme, setActiveTheme] = useState(() => {
+        const storedTheme = localStorage.getItem('theme') || 'system';
+        if (storedTheme === 'system') {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        return storedTheme;
+    });
+
     const [fontSize, setFontSize] = useState(() => {
         return parseInt(localStorage.getItem('fontSize'), 10) || 100;
     });
 
     useEffect(() => {
         const applyTheme = (currentTheme) => {
-            let activeTheme = currentTheme;
+            let nextActiveTheme = currentTheme;
             if (currentTheme === 'system') {
                 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                activeTheme = mediaQuery.matches ? 'dark' : 'light';
+                nextActiveTheme = mediaQuery.matches ? 'dark' : 'light';
             }
-            document.documentElement.setAttribute('data-theme', activeTheme);
+            document.documentElement.setAttribute('data-theme', nextActiveTheme);
+            setActiveTheme(nextActiveTheme);
 
             // Update theme-color meta tag
-            let metaColor = activeTheme === 'dark' ? '#09070a' : '#2a1b3d';
+            let metaColor = nextActiveTheme === 'dark' ? '#09070a' : '#2a1b3d';
             let metaTag = document.querySelector('meta[name="theme-color"]');
             if (metaTag) {
                 metaTag.setAttribute('content', metaColor);
@@ -37,7 +46,7 @@ export const AccessibilityProvider = ({ children }) => {
         // Set up listener for system theme changes
         let mediaQuery = null;
         let handleChange = null;
-        
+
         if (theme === 'system') {
             mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             handleChange = () => applyTheme('system');
@@ -77,6 +86,7 @@ export const AccessibilityProvider = ({ children }) => {
         <AccessibilityContext.Provider
             value={{
                 theme,
+                activeTheme,
                 fontSize,
                 toggleTheme,
                 increaseFontSize,

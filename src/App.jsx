@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AccessibilityProvider } from './context/AccessibilityContext';
 import StationContent from './components/StationContent';
+import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
 import AccessibilityMenu from './components/AccessibilityMenu';
 import { TOTAL_STATIONS } from './constants';
@@ -45,7 +46,7 @@ function AppContent() {
       <main>
         <div id="content-area">
           <Routes>
-            <Route path="/" element={<StationContent />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/station/:id" element={<StationContent />} />
           </Routes>
         </div>
