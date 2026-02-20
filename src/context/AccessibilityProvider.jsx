@@ -23,8 +23,12 @@ export const AccessibilityProvider = ({ children }) => {
         const applyTheme = (currentTheme) => {
             let nextActiveTheme = currentTheme;
             if (currentTheme === 'system') {
-                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                nextActiveTheme = mediaQuery.matches ? 'dark' : 'light';
+                if (window.matchMedia) {
+                    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                    nextActiveTheme = mediaQuery.matches ? 'dark' : 'light';
+                } else {
+                    nextActiveTheme = 'light'; // Default to light if matchMedia is unavailable
+                }
             }
             document.documentElement.setAttribute('data-theme', nextActiveTheme);
             setActiveTheme(nextActiveTheme);
@@ -44,16 +48,24 @@ export const AccessibilityProvider = ({ children }) => {
         let mediaQuery = null;
         let handleChange = null;
 
-        if (theme === 'system') {
+        if (theme === 'system' && window.matchMedia) {
             mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             handleChange = () => applyTheme('system');
-            mediaQuery.addEventListener('change', handleChange);
+            if (mediaQuery.addEventListener) {
+                mediaQuery.addEventListener('change', handleChange);
+            } else if (mediaQuery.addListener) {
+                mediaQuery.addListener(handleChange);
+            }
         }
 
         // Clean up listener on unmount or theme change
         return () => {
             if (mediaQuery && handleChange) {
-                mediaQuery.removeEventListener('change', handleChange);
+                if (mediaQuery.removeEventListener) {
+                    mediaQuery.removeEventListener('change', handleChange);
+                } else if (mediaQuery.removeListener) {
+                    mediaQuery.removeListener(handleChange);
+                }
             }
         };
     }, [theme]);
