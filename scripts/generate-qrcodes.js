@@ -3,6 +3,7 @@ import path from 'path';
 import QRCode from 'qrcode';
 import PDFDocument from 'pdfkit';
 import SVGtoPDF from 'svg-to-pdfkit';
+import PptxGenJS from 'pptxgenjs';
 
 // Base URL for the Via Cruxis application
 const BASE_URL = 'https://via-sacra.acutis.pt/#/station/';
@@ -25,6 +26,10 @@ async function generateQRCodes() {
     }
 
     console.log(`Generating QR codes for ${TOTAL_STATIONS} stations...`);
+
+    // Initialize PPTX presentation
+    const pres = new PptxGenJS();
+    pres.layout = 'LAYOUT_16x9';
 
     for (let i = 1; i <= TOTAL_STATIONS; i++) {
         const stationUrl = `${BASE_URL}${i}`;
@@ -71,6 +76,9 @@ async function generateQRCodes() {
             const boxX = cx - boxSize / 2;
             const boxY = cy - boxSize / 2;
 
+            // PPTX SVG renderer ignores dominant-baseline, manually calculate vertical center offset
+            const textY = cy + (fontSize * 0.37);
+
             // Group for the injected text and its background
             // Matching the website:
             // --primary-color: #642e7c;
@@ -85,20 +93,23 @@ async function generateQRCodes() {
           <!-- Center Label -->
           <g id="center-label">
             <rect x="${boxX}" y="${boxY}" width="${boxSize}" height="${boxSize}" fill="#ffffff" stroke="#a68ba3" stroke-width="1" rx="2" ry="2"/>
-            <text x="${cx}" y="${cy}" 
-                  font-family="system-ui, -apple-system, sans-serif" 
+            <text x="${cx}" y="${textY}" 
+                  font-family="Arial, Helvetica, sans-serif" 
                   font-weight="bold" 
                   font-size="${fontSize}px" 
                   fill="#4a215c" 
                   text-anchor="middle" 
-                  dominant-baseline="central"
                   >${romanNumeral}</text>
           </g>
         </g>
       `;
 
-            // Insert before the closing </svg> tag
-            const modifiedSvg = svgString.replace('</svg>', `${injectedElement}\n</svg>`);
+            // Insert before the closing </svg> tag, and set explicit high-res width/height for PowerPoint compatibility
+            // We also add stroke-width="1.05" to the QR code path to prevent PowerPoint's subpixel white-gap rendering bugs between modules
+            const modifiedSvg = svgString
+                .replace('<svg ', '<svg width="2000" height="2000" ')
+                .replace('<path stroke="#4a215c" d="', '<path stroke="#4a215c" stroke-width="1.05" d="')
+                .replace('</svg>', `${injectedElement}\n</svg>`);
 
             fs.writeFileSync(outputFile, modifiedSvg);
             console.log(`✓ Generated ${outputFile}`);
@@ -142,8 +153,8 @@ async function generateQRCodes() {
             }
 
             // QR Code dimensions and perfectly centering it on the page
-            const qrSize = Math.min(doc.page.width - 100, doc.page.height - 300); // 300 max or scaled
-            const finalQrSize = Math.max(qrSize, 300); // minimum 300 for visibility
+            const pdfQrSize = Math.min(doc.page.width - 100, doc.page.height - 300); // 300 max or scaled
+            const finalQrSize = Math.max(pdfQrSize, 300); // minimum 300 for visibility
 
             const xPos = (doc.page.width - finalQrSize) / 2;
             const yPos = (doc.page.height - finalQrSize) / 2;
@@ -162,8 +173,8 @@ async function generateQRCodes() {
                 .text(stationTitle, 40, yPos - 80, { align: 'center', width: doc.page.width - 80 });
 
             // Saint name below the QR code (Darkened for B&W printing)
-            doc.font('Helvetica-Oblique')
-                .fontSize(24)
+            doc.font('Helvetica-BoldOblique')
+                .fontSize(28)
                 .fillColor('#4a215c') // Slightly Darker Purple
                 .text(saintName, 0, yPos + finalQrSize + 60, { align: 'center', width: doc.page.width });
 
@@ -171,11 +182,51 @@ async function generateQRCodes() {
             doc.end();
             console.log(`✓ Generated ${pdfOutputFile}`);
 
+            // -----------------------------------------------------------------
+            // Add to PPTX Presentation
+            // -----------------------------------------------------------------
+            const slide = pres.addSlide();
+
+            // LAYOUT_16x9 is 10 x 5.625 inches
+            const slideWidth = 10;
+
+            // Title
+            slide.addText(stationTitle, {
+                x: 0, y: 0.3, w: '100%', h: 0.8,
+                align: 'center',
+                fontSize: 36,
+                bold: true,
+                color: '4a215c'
+            });
+
+            // QR Code dimensions
+            const pptxQrSize = 3.5;
+            const pptxQrX = (slideWidth - pptxQrSize) / 2;
+            const pptxQrY = 1.2;
+
+            slide.addImage({
+                path: outputFile,
+                x: pptxQrX, y: pptxQrY, w: pptxQrSize, h: pptxQrSize
+            });
+
+            // Saint Name
+            slide.addText(saintName, {
+                x: 0, y: pptxQrY + pptxQrSize + 0.1, w: '100%', h: 0.8,
+                align: 'center',
+                fontSize: 28,
+                italic: true,
+                color: '4a215c'
+            });
 
         } catch (err) {
             console.error(`X Failed to generate QR code for station ${i}:`, err);
         }
     }
+
+    // Save PPTX presentation
+    const pptxFile = path.join(OUT_DIR, 'via-sacra-qrcodes.pptx');
+    await pres.writeFile({ fileName: pptxFile });
+    console.log(`✓ Generated PPTX presentation: ${pptxFile}`);
 
     console.log('Done!');
 }
