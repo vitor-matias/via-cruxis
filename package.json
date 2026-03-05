@@ -16,7 +16,7 @@
     "@use-gesture/react": "^10.3.1",
     "dompurify": "^3.3.1",
     "lucide-react": "^0.575.0",
-    "marked": "^17.0.3",
+    "marked": "^17.0.4",
     "prop-types": "^15.8.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
